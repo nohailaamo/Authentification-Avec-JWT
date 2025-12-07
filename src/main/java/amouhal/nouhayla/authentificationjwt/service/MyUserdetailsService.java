@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MyUserdetailsService implements UserDetailsService {
+
     private final InMemoryUserDetailsManager delegate;
+
     public MyUserdetailsService() {
         UserDetails user = User.withUsername("user")
                 .password("{noop}password")
@@ -21,6 +23,7 @@ public class MyUserdetailsService implements UserDetailsService {
                 .build();
         this.delegate = new InMemoryUserDetailsManager(user, admin);
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return delegate.loadUserByUsername(username);
